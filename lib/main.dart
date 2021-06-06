@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setWindowMinSize(kWindowSize);
   setWindowMaxSize(kWindowSize);
-  await configureInjection(Environment.prod);
+  await configureInjection(Environment.dev);
   const initializationSettingsMacOS = MacOSInitializationSettings(
     requestAlertPermission: true,
     requestBadgePermission: false,
