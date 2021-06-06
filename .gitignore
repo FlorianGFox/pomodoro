@@ -44,3 +44,29 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+### https://raw.github.com/github/gitignore/340e2fe08a2356c2e3760ff58c3a9e1fddf08060/Global/Windows.gitignore
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
