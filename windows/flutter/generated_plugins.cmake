@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   bitsdojo_window_windows
   desktop_window
   menubar
+  quick_notify
   url_launcher_windows
   window_size
 )

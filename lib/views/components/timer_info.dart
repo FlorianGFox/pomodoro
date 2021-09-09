@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pomodoro/core/platform.dart';
 import 'package:provider/provider.dart';
+import 'package:quick_notify/quick_notify.dart';
 import 'package:window_activator/window_activator.dart';
 
 import '../../constants/color_constants.dart';
@@ -95,25 +96,26 @@ class _TimerInfoState extends State<TimerInfo> {
     final message = !state.mode.isWork
         ? 'Time to take a break'
         : 'Let\'s get back to work!';
-    if (currentPlatformType == PlatformType.macOS &&
-        await WindowActivator.isMiniaturized()) {
-      await notifications.show(
-        0,
-        'Cycle completed',
-        message,
-        const NotificationDetails(
-          macOS: MacOSNotificationDetails(
-            subtitle: 'Click to go back to the app',
+    if (currentPlatformType == PlatformType.macOS) {
+      if (await WindowActivator.isMiniaturized()) {
+        await notifications.show(
+          0,
+          'Cycle completed',
+          message,
+          const NotificationDetails(
+            macOS: MacOSNotificationDetails(
+              subtitle: 'Click to go back to the app',
+            ),
           ),
-        ),
-      );
-    } else {
-      if (currentPlatformType == PlatformType.macOS) {
+        );
+      } else {
         await WindowActivator.activateWindow();
         await player.setAsset('audio/ding.mp3');
         await player.play();
         await player.seekToPrevious();
       }
+    } else {
+      QuickNotify.notify(content: message);
     }
   }
 

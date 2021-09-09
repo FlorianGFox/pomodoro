@@ -2,6 +2,7 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 import 'package:injectable/injectable.dart';
 import 'package:pomodoro/core/desktop_window.dart';
 import 'package:window_activator/window_activator.dart';
