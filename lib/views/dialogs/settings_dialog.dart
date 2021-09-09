@@ -22,9 +22,7 @@ class _SettingsDialogState extends State<SettingsDialog> {
   void initState() {
     cubit = context.read<SettingsCubit>();
     if (cubit.state is SettingsLoaded)
-      updateTimes(
-        cubit.state,
-      );
+      updateTimes(cubit.state as SettingsLoaded);
     cubit.getExistingTimes();
     super.initState();
   }
