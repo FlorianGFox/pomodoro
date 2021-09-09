@@ -3,7 +3,7 @@ import 'package:pomodoro/core/platform.dart';
 import 'package:pomodoro/views/widgets/windows_top_bar.dart';
 
 import '../components/action_bar.dart';
-import '../components/desktop_bindings.dart';
+import '../components/mac_os_bindings.dart';
 import '../components/timer_info.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,15 +22,13 @@ class _WindowsHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DesktopBindings(
-      child: Scaffold(
-        body: WindowsTopBar(
-          child: Row(
-            children: [
-              ActionBar(),
-              Expanded(child: TimerInfo()),
-            ],
-          ),
+    return Scaffold(
+      body: WindowsTopBar(
+        child: Row(
+          children: [
+            ActionBar(),
+            Expanded(child: TimerInfo()),
+          ],
         ),
       ),
     );
@@ -42,7 +40,7 @@ class _MacHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DesktopBindings(
+    return MacOsBindings(
       child: Scaffold(
         body: Row(
           children: [

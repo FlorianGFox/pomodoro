@@ -12,18 +12,18 @@ class ResetIntent extends Intent {}
 
 class SettingsIntent extends Intent {}
 
-class DesktopBindings extends StatefulWidget {
-  const DesktopBindings({
+class MacOsBindings extends StatefulWidget {
+  const MacOsBindings({
     Key key,
     @required this.child,
   }) : super(key: key);
   final Widget child;
 
   @override
-  _DesktopBindingsState createState() => _DesktopBindingsState();
+  _MacOsBindingsState createState() => _MacOsBindingsState();
 }
 
-class _DesktopBindingsState extends State<DesktopBindings> {
+class _MacOsBindingsState extends State<MacOsBindings> {
   final _skipKeySet = LogicalKeySet(
     LogicalKeyboardKey.meta,
     LogicalKeyboardKey.keyS,
