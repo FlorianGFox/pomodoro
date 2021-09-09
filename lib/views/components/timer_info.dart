@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:pomodoro/core/platform.dart';
 import 'package:provider/provider.dart';
 import 'package:window_activator/window_activator.dart';
 
@@ -94,7 +95,8 @@ class _TimerInfoState extends State<TimerInfo> {
     final message = !state.mode.isWork
         ? 'Time to take a break'
         : 'Let\'s get back to work!';
-    if (await WindowActivator.isMiniaturized()) {
+    if (currentPlatformType == PlatformType.macOS &&
+        await WindowActivator.isMiniaturized()) {
       await notifications.show(
         0,
         'Cycle completed',
@@ -106,10 +108,12 @@ class _TimerInfoState extends State<TimerInfo> {
         ),
       );
     } else {
-      await WindowActivator.activateWindow();
-      await player.setAsset('audio/ding.mp3');
-      await player.play();
-      await player.seekToPrevious();
+      if (currentPlatformType == PlatformType.macOS) {
+        await WindowActivator.activateWindow();
+        await player.setAsset('audio/ding.mp3');
+        await player.play();
+        await player.seekToPrevious();
+      }
     }
   }
 
