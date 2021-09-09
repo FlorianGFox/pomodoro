@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pomodoro/core/desktop_window.dart';
 import 'package:window_activator/window_activator.dart';
 import 'package:window_size/window_size.dart';
 
@@ -14,11 +15,10 @@ import 'views/screens/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setWindowMinSize(kWindowSize);
-  setWindowMaxSize(kWindowSize);
   await configureInjection(Environment.dev);
+  setUpDesktopWindow();
+
   const initializationSettingsMacOS = MacOSInitializationSettings(
-    requestAlertPermission: true,
     requestBadgePermission: false,
     // requestSoundPermission: true,
   );
