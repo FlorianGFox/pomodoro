@@ -13,6 +13,7 @@ void setUpDesktopWindow() {
       const initialSize = kWindowSize;
       appWindow.minSize = initialSize;
       appWindow.size = initialSize;
+      appWindow.maxSize = initialSize;
       appWindow.alignment = Alignment.center;
       appWindow.show();
     });
