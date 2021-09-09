@@ -14,36 +14,14 @@ class WindowsTopBar extends StatelessWidget {
     return WindowBorder(
       color: Colors.white,
       width: 0,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Stack(
         children: [
+          child,
           SizedBox(
             height: 32,
-            child: Row(
-              children: [LeftSide(), RightSide()],
-            ),
+            child: RightSide(),
           ),
-          Expanded(child: child),
         ],
-      ),
-    );
-  }
-}
-
-const sidebarColor = Color(0xFFF6A00C);
-
-class LeftSide extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: SizedBox(
-        width: 80,
-        child: Column(
-          children: [
-            WindowTitleBarBox(child: MoveWindow()),
-            Expanded(child: Container())
-          ],
-        ),
       ),
     );
   }
@@ -52,15 +30,8 @@ class LeftSide extends StatelessWidget {
 class RightSide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          WindowTitleBarBox(
-              child: Row(
-                  children: [Expanded(child: MoveWindow()), WindowButtons()])),
-        ],
-      ),
-    );
+    return WindowTitleBarBox(
+        child: Row(children: [Expanded(child: MoveWindow()), WindowButtons()]));
   }
 }
 
