@@ -73,56 +73,59 @@ class _SettingsDialogState extends State<SettingsDialog> {
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TimeInput(
-                title: 'Work Time: ',
-                hint: '25',
-                controller: _workController,
-                autofocus: true,
-              ),
-              TimeInput(
-                title: 'Relax Time: ',
-                hint: '05',
-                controller: _relaxController,
-                autofocus: true,
-              ),
-              const VerticalSpacing(10),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 170,
-                    child: ElevatedButton(
-                      onPressed: _handleSave,
-                      child: const Text(
-                        'SAVE',
-                        style: TextStyle(
-                          color: Colors.black,
-                          letterSpacing: 3,
+          body: FittedBox(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TimeInput(
+                  title: 'Work Time: ',
+                  hint: '25',
+                  controller: _workController,
+                  autofocus: true,
+                ),
+                TimeInput(
+                  title: 'Relax Time: ',
+                  hint: '05',
+                  controller: _relaxController,
+                  autofocus: true,
+                ),
+                const VerticalSpacing(10),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 170,
+                      child: ElevatedButton(
+                        onPressed: _handleSave,
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith((states) {
+                            if (states.contains(MaterialState.hovered)) {
+                              return const Color.fromRGBO(140, 255, 205, 1);
+                            }
+                            return const Color.fromRGBO(34, 214, 169, 1);
+                          }),
+                        ),
+                        child: const Text(
+                          'SAVE',
+                          style: TextStyle(
+                            color: Colors.black,
+                            letterSpacing: 3,
+                          ),
                         ),
                       ),
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.hovered))
-                            return const Color.fromRGBO(140, 255, 205, 1);
-                          return const Color.fromRGBO(34, 214, 169, 1);
-                        }),
+                    ),
+                    const SizedBox(width: 20),
+                    Text(
+                      errorMessage ?? '',
+                      style: TextStyle(
+                        color: Colors.redAccent.shade200,
+                        fontSize: 13,
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 20),
-                  Text(
-                    errorMessage ?? '',
-                    style: TextStyle(
-                      color: Colors.redAccent.shade200,
-                      fontSize: 13,
-                    ),
-                  )
-                ],
-              )
-            ],
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -58,7 +59,9 @@ class Pomodoro extends StatelessWidget {
               create: (context) => getIt<SettingsCubit>()..getExistingTimes(),
             ),
           ],
-          child: HomeScreen(),
+          child: ContextMenuOverlay(
+            child: HomeScreen(),
+          ),
         ),
       ),
     );
