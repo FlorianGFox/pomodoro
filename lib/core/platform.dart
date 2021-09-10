@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// Collection of functions to determine the current platform.

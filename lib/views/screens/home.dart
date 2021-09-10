@@ -1,14 +1,16 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
-import 'package:pomodoro/core/platform.dart';
-import 'package:pomodoro/views/widgets/context_menu.dart';
-import 'package:pomodoro/views/widgets/windows_top_bar.dart';
 
+import '../../core/platform.dart';
 import '../components/action_bar.dart';
 import '../components/mac_os_bindings.dart';
 import '../components/timer_info.dart';
+import '../widgets/context_menu.dart';
+import '../widgets/windows_top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final homeScreenWidget = currentPlatformType == PlatformType.windows
@@ -54,7 +56,7 @@ class _Timer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: const [
         ActionBar(),
         Expanded(child: TimerInfo()),
       ],

@@ -1,8 +1,9 @@
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
-import 'package:pomodoro/logic/timer_logic/timer_cubit.dart';
-import 'package:pomodoro/views/dialogs/settings_dialog.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
+
+import '../../logic/timer_logic/timer_cubit.dart';
+import '../dialogs/settings_dialog.dart';
 
 class TimerContextMenu extends StatelessWidget {
   const TimerContextMenu({Key key}) : super(key: key);
@@ -32,13 +33,12 @@ class TimerContextMenu extends StatelessWidget {
     final hasSaved = await showDialog<bool>(
       context: context,
       builder: (context) {
-        return SettingsDialog();
+        return const SettingsDialog();
       },
     );
     if (hasSaved ?? false) {
-      cubit
-        ..initTimes()
-        ..resetTimer();
+      cubit.initTimes();
+      await cubit.resetTimer();
     }
   }
 }

@@ -1,11 +1,12 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
-import 'package:pomodoro/core/pomodoro_time.dart';
 
 import '../../constants/pomodoro_constants.dart';
+import '../../core/pomodoro_time.dart';
 import '../../core/preferences_service.dart';
 import '../../core/ticker.dart' as tick;
 
@@ -35,7 +36,7 @@ class TimerCubit extends Cubit<TimerState> {
     );
   }
 
-  void startTimer() async {
+  Future<void> startTimer() async {
     await _tickerSubscription?.cancel();
     emit(state.copyWith(status: TimerStatus.active));
     _tickerSubscription =
@@ -43,15 +44,16 @@ class TimerCubit extends Cubit<TimerState> {
   }
 
   void _mapTickerEventToState(int event) {
-    if (event > 0)
+    if (event > 0) {
       emit(
         state.copyWith(
           status: TimerStatus.active,
           duration: event,
         ),
       );
-    else
+    } else {
       nextCycle();
+    }
   }
 
   void nextCycle() {
@@ -94,7 +96,7 @@ class TimerCubit extends Cubit<TimerState> {
     }
   }
 
-  void resetTimer() async {
+  Future<void> resetTimer() async {
     await _tickerSubscription?.cancel();
     emit(TimerState.initial());
     initTimes();

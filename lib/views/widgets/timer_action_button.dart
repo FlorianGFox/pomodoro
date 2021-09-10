@@ -17,8 +17,8 @@ class TimerActionButton extends StatelessWidget {
       width: 35,
       height: 35,
       child: FloatingActionButton(
-        child: Icon(icon, size: 20),
         onPressed: onPressed,
+        child: Icon(icon, size: 20),
       ),
     );
   }

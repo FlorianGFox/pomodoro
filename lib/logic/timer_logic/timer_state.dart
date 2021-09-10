@@ -9,7 +9,7 @@ extension TimerModeExtension on TimerMode {
 }
 
 class TimerState extends Equatable {
-  TimerState({
+  const TimerState({
     @required this.mode,
     @required this.status,
     @required this.duration,
@@ -18,7 +18,7 @@ class TimerState extends Equatable {
     @required this.currentCycle,
   });
 
-  factory TimerState.initial() => TimerState(
+  factory TimerState.initial() => const TimerState(
         mode: TimerMode.work,
         status: TimerStatus.initial,
         duration: kWorkTime,

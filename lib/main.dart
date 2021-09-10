@@ -2,20 +2,17 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 import 'package:injectable/injectable.dart';
-import 'package:pomodoro/core/desktop_window.dart';
 import 'package:window_activator/window_activator.dart';
-import 'package:window_size/window_size.dart';
 
 import 'constants/color_constants.dart';
-import 'constants/size_constants.dart';
+import 'core/desktop_window.dart';
 import 'injection/injection.dart';
 import 'logic/settings_logic/settings_cubit.dart';
 import 'logic/timer_logic/timer_cubit.dart';
 import 'views/screens/home.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection(Environment.dev);
   setUpDesktopWindow();
@@ -32,10 +29,12 @@ void main() async {
     initializationSettings,
     onSelectNotification: (_) => WindowActivator.activateWindow(),
   );
-  runApp(Pomodoro());
+  runApp(const Pomodoro());
 }
 
 class Pomodoro extends StatelessWidget {
+  const Pomodoro({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -61,7 +60,7 @@ class Pomodoro extends StatelessWidget {
             ),
           ],
           child: ContextMenuOverlay(
-            child: HomeScreen(),
+            child: const HomeScreen(),
           ),
         ),
       ),

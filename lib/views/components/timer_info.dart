@@ -1,19 +1,22 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:pomodoro/core/platform.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_notify/quick_notify.dart';
 import 'package:window_activator/window_activator.dart';
 
 import '../../constants/color_constants.dart';
+import '../../core/platform.dart';
 import '../../logic/timer_logic/timer_cubit.dart';
 import '../widgets/cycle_indicator.dart';
 
 class TimerInfo extends StatefulWidget {
+  const TimerInfo({Key key}) : super(key: key);
+
   @override
   _TimerInfoState createState() => _TimerInfoState();
 }
@@ -41,19 +44,17 @@ class _TimerInfoState extends State<TimerInfo> {
     return BlocListener<TimerCubit, TimerState>(
       listener: (context, state) async {
         if (state.status == TimerStatus.complete) {
-          _onComplete(state);
+          await _onComplete(state);
         }
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+        padding: const EdgeInsets.symmetric(horizontal: 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               width: double.maxFinite,
               child: FittedBox(
-                fit: BoxFit.contain,
                 child: Text(
                   '$minutesStr:$secondsStr',
                   maxLines: 1,
@@ -68,7 +69,7 @@ class _TimerInfoState extends State<TimerInfo> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 15.0),
+              padding: const EdgeInsets.only(right: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -92,10 +93,9 @@ class _TimerInfoState extends State<TimerInfo> {
     );
   }
 
-  void _onComplete(TimerState state) async {
-    final message = !state.mode.isWork
-        ? 'Time to take a break'
-        : 'Let\'s get back to work!';
+  Future<void> _onComplete(TimerState state) async {
+    final message =
+        !state.mode.isWork ? 'Time to take a break' : "Let's get back to work!";
     if (currentPlatformType == PlatformType.macOS) {
       if (await WindowActivator.isMiniaturized()) {
         await notifications.show(
@@ -119,7 +119,7 @@ class _TimerInfoState extends State<TimerInfo> {
     }
   }
 
-  void initNotifications() async {
+  Future<void> initNotifications() async {
     await notifications
         .resolvePlatformSpecificImplementation<
             MacOSFlutterLocalNotificationsPlugin>()

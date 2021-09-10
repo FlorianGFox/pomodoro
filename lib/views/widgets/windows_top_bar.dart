@@ -17,7 +17,7 @@ class WindowsTopBar extends StatelessWidget {
       child: Stack(
         children: [
           child,
-          SizedBox(
+          const SizedBox(
             height: 32,
             child: RightSide(),
           ),
@@ -28,27 +28,37 @@ class WindowsTopBar extends StatelessWidget {
 }
 
 class RightSide extends StatelessWidget {
+  const RightSide({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return WindowTitleBarBox(
-        child: Row(children: [Expanded(child: MoveWindow()), WindowButtons()]));
+      child: Row(
+        children: [
+          Expanded(child: MoveWindow()),
+          const WindowButtons(),
+        ],
+      ),
+    );
   }
 }
 
 final buttonColors = WindowButtonColors(
-    iconNormal: Color(0xFF805306),
-    mouseOver: Color(0xFFF6A00C),
-    mouseDown: Color(0xFF805306),
-    iconMouseOver: Color(0xFF805306),
-    iconMouseDown: Color(0xFFFFD500));
+    iconNormal: const Color(0xFF805306),
+    mouseOver: const Color(0xFFF6A00C),
+    mouseDown: const Color(0xFF805306),
+    iconMouseOver: const Color(0xFF805306),
+    iconMouseDown: const Color(0xFFFFD500));
 
 final closeButtonColors = WindowButtonColors(
-    mouseOver: Color(0xFFD32F2F),
-    mouseDown: Color(0xFFB71C1C),
-    iconNormal: Color(0xFF805306),
+    mouseOver: const Color(0xFFD32F2F),
+    mouseDown: const Color(0xFFB71C1C),
+    iconNormal: const Color(0xFF805306),
     iconMouseOver: Colors.white);
 
 class WindowButtons extends StatelessWidget {
+  const WindowButtons({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(

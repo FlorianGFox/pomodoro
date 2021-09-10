@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class PomodoroTime extends Equatable {
-  PomodoroTime({
+  const PomodoroTime({
     @required this.workTime,
     @required this.restTime,
   });

@@ -76,23 +76,23 @@ class _MacOsBindingsState extends State<MacOsBindings> {
     timerCubit.resetTimer();
   }
 
-  void _onSettingsClicked() async {
+  Future<void> _onSettingsClicked() async {
     if (!_settingsOpen) {
       _settingsOpen = true;
       final hasSaved = await showDialog<bool>(
         context: context,
         builder: (context) {
-          return SettingsDialog();
+          return const SettingsDialog();
         },
       );
       if (hasSaved ?? false) {
-        timerCubit
-          ..initTimes()
-          ..resetTimer();
+        timerCubit.initTimes();
+        await timerCubit.resetTimer();
       }
       _settingsOpen = false;
-    } else
+    } else {
       Navigator.of(context).pop();
+    }
   }
 
   @override

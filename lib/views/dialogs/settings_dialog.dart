@@ -9,6 +9,8 @@ import '../../logic/settings_logic/settings_cubit.dart';
 import '../widgets/vertical_spacing.dart';
 
 class SettingsDialog extends StatefulWidget {
+  const SettingsDialog({Key key}) : super(key: key);
+
   @override
   _SettingsDialogState createState() => _SettingsDialogState();
 }
@@ -21,8 +23,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
   @override
   void initState() {
     cubit = context.read<SettingsCubit>();
-    if (cubit.state is SettingsLoaded)
+    if (cubit.state is SettingsLoaded) {
       updateTimes(cubit.state as SettingsLoaded);
+    }
     cubit.getExistingTimes();
     super.initState();
   }
@@ -60,9 +63,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
         }
       },
       child: Container(
-        margin: const EdgeInsets.all(25.0),
+        margin: const EdgeInsets.all(25),
         padding: const EdgeInsets.only(
-          left: 30.0,
+          left: 30,
           top: 30,
           right: 30,
           bottom: 20,
@@ -181,7 +184,7 @@ class TimeInput extends StatelessWidget {
             ),
             inputFormatters: [
               LengthLimitingTextInputFormatter(2),
-              FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+              FilteringTextInputFormatter.allow(RegExp('[0-9]'))
             ],
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
