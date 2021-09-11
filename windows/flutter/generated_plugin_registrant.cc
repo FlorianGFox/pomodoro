@@ -11,7 +11,6 @@
 #include <menubar/menubar_plugin.h>
 #include <quick_notify/quick_notify_plugin.h>
 #include <url_launcher_windows/url_launcher_windows.h>
-#include <window_size/window_size_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   BitsdojoWindowPluginRegisterWithRegistrar(
@@ -24,6 +23,4 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("QuickNotifyPlugin"));
   UrlLauncherWindowsRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("UrlLauncherWindows"));
-  WindowSizePluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("WindowSizePlugin"));
 }

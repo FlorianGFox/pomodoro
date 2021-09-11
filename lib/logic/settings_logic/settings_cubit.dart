@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../constants/pomodoro_constants.dart';
 import '../../core/pomodoro_time.dart';
 import '../../core/preferences_service.dart';
 
@@ -16,8 +15,8 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   void getExistingTimes() {
     final times = _storage.getTimes();
-    final workTime = times.workTime ?? kWorkTime;
-    final restTime = times.restTime ?? kRestTime;
+    final workTime = times.workTime;
+    final restTime = times.restTime;
     emit(SettingsLoaded(PomodoroTime(
       workTime: workTime,
       restTime: restTime,

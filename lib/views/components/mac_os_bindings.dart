@@ -14,8 +14,8 @@ class SettingsIntent extends Intent {}
 
 class MacOsBindings extends StatefulWidget {
   const MacOsBindings({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
   final Widget child;
 
@@ -37,11 +37,9 @@ class _MacOsBindingsState extends State<MacOsBindings> {
     LogicalKeyboardKey.comma,
   );
 
-  TimerCubit timerCubit;
   bool _settingsOpen = false;
   @override
   void initState() {
-    timerCubit = context.read<TimerCubit>();
     setApplicationMenu([
       Submenu(
         label: 'Timer',
@@ -69,14 +67,15 @@ class _MacOsBindingsState extends State<MacOsBindings> {
   }
 
   void _onSkipCycleClicked() {
-    timerCubit.nextCycle();
+    context.read<TimerCubit>().nextCycle();
   }
 
   void _onResetClicked() {
-    timerCubit.resetTimer();
+    context.read<TimerCubit>().resetTimer();
   }
 
   Future<void> _onSettingsClicked() async {
+    final timerCubit = context.read<TimerCubit>();
     if (!_settingsOpen) {
       _settingsOpen = true;
       final hasSaved = await showDialog<bool>(

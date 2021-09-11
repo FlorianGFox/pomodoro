@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class WindowsTopBar extends StatelessWidget {
   const WindowsTopBar({
-    Key key,
+    Key? key,
     this.child,
   }) : super(key: key);
 
-  final Widget child;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class WindowsTopBar extends StatelessWidget {
       width: 0,
       child: Stack(
         children: [
-          child,
+          if (child != null) child!,
           const SizedBox(
             height: 32,
             child: RightSide(),
@@ -28,7 +28,7 @@ class WindowsTopBar extends StatelessWidget {
 }
 
 class RightSide extends StatelessWidget {
-  const RightSide({Key key}) : super(key: key);
+  const RightSide({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ final closeButtonColors = WindowButtonColors(
     iconMouseOver: Colors.white);
 
 class WindowButtons extends StatelessWidget {
-  const WindowButtons({Key key}) : super(key: key);
+  const WindowButtons({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

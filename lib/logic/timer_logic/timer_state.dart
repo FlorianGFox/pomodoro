@@ -10,12 +10,12 @@ extension TimerModeExtension on TimerMode {
 
 class TimerState extends Equatable {
   const TimerState({
-    @required this.mode,
-    @required this.status,
-    @required this.duration,
-    @required this.cycles,
-    @required this.pomodoroTime,
-    @required this.currentCycle,
+    required this.mode,
+    required this.status,
+    required this.duration,
+    required this.cycles,
+    required this.pomodoroTime,
+    required this.currentCycle,
   });
 
   factory TimerState.initial() => const TimerState(
@@ -48,12 +48,12 @@ class TimerState extends Equatable {
   }
 
   TimerState copyWith({
-    TimerMode mode,
-    TimerStatus status,
-    int duration,
-    PomodoroTime pomodoroTime,
-    int cycles,
-    int currentCycle,
+    TimerMode? mode,
+    TimerStatus? status,
+    int? duration,
+    PomodoroTime? pomodoroTime,
+    int? cycles,
+    int? currentCycle,
   }) {
     return TimerState(
       mode: mode ?? this.mode,

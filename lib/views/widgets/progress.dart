@@ -4,8 +4,8 @@ import '../../constants/color_constants.dart';
 
 class ProgressPill extends StatelessWidget {
   const ProgressPill({
-    Key key,
-    @required this.greyedOut,
+    Key? key,
+    required this.greyedOut,
   }) : super(key: key);
 
   final bool greyedOut;
@@ -25,8 +25,8 @@ class ProgressPill extends StatelessWidget {
 
 class ProgressDot extends StatelessWidget {
   const ProgressDot({
-    Key key,
-    @required this.greyedOut,
+    Key? key,
+    required this.greyedOut,
   }) : super(key: key);
 
   final bool greyedOut;

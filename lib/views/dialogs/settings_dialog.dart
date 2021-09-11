@@ -9,20 +9,20 @@ import '../../logic/settings_logic/settings_cubit.dart';
 import '../widgets/vertical_spacing.dart';
 
 class SettingsDialog extends StatefulWidget {
-  const SettingsDialog({Key key}) : super(key: key);
+  const SettingsDialog({Key? key}) : super(key: key);
 
   @override
   _SettingsDialogState createState() => _SettingsDialogState();
 }
 
 class _SettingsDialogState extends State<SettingsDialog> {
-  SettingsCubit cubit;
-  String errorMessage;
   final _workController = TextEditingController();
   final _relaxController = TextEditingController();
+  String? errorMessage;
+
   @override
   void initState() {
-    cubit = context.read<SettingsCubit>();
+    final cubit = context.read<SettingsCubit>();
     if (cubit.state is SettingsLoaded) {
       updateTimes(cubit.state as SettingsLoaded);
     }
@@ -44,10 +44,10 @@ class _SettingsDialogState extends State<SettingsDialog> {
       errorMessage = 'Invalid time';
     } else {
       errorMessage = null;
-      cubit.saveTimes(
-        int.parse(_workController.text) * 60,
-        int.parse(_relaxController.text) * 60,
-      );
+      context.read<SettingsCubit>().saveTimes(
+            int.parse(_workController.text) * 60,
+            int.parse(_relaxController.text) * 60,
+          );
     }
     setState(() {});
   }
@@ -145,11 +145,11 @@ class _SettingsDialogState extends State<SettingsDialog> {
 
 class TimeInput extends StatelessWidget {
   const TimeInput({
-    Key key,
+    Key? key,
     this.autofocus = false,
-    @required this.controller,
-    @required this.title,
-    @required this.hint,
+    required this.controller,
+    required this.title,
+    required this.hint,
   }) : super(key: key);
 
   final TextEditingController controller;

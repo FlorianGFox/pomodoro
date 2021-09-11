@@ -9,7 +9,7 @@ import '../widgets/context_menu.dart';
 import '../widgets/windows_top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _WindowsHomeScreen extends StatelessWidget {
-  const _WindowsHomeScreen({Key key}) : super(key: key);
+  const _WindowsHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _WindowsHomeScreen extends StatelessWidget {
 }
 
 class _MacHomeScreen extends StatelessWidget {
-  const _MacHomeScreen({Key key}) : super(key: key);
+  const _MacHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class _MacHomeScreen extends StatelessWidget {
 }
 
 class _Timer extends StatelessWidget {
-  const _Timer({Key key}) : super(key: key);
+  const _Timer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import '../widgets/timer_action_button.dart';
 import '../widgets/vertical_spacing.dart';
 
 class ActionBar extends StatelessWidget {
-  const ActionBar({Key key}) : super(key: key);
+  const ActionBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

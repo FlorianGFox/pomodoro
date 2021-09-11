@@ -4,9 +4,9 @@ import 'progress.dart';
 
 class CycleIndicator extends StatelessWidget {
   const CycleIndicator({
-    Key key,
-    @required this.cycles,
-    @required this.currentCycle,
+    Key? key,
+    required this.cycles,
+    required this.currentCycle,
   }) : super(key: key);
   final int cycles;
   final int currentCycle;

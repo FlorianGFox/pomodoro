@@ -3,33 +3,28 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_notify/quick_notify.dart';
-import 'package:window_activator/window_activator.dart';
 
 import '../../constants/color_constants.dart';
-import '../../core/platform.dart';
+import '../../core/desktop_window.dart';
+import '../../core/notifications.dart';
+import '../../injection/injection.dart';
 import '../../logic/timer_logic/timer_cubit.dart';
 import '../widgets/cycle_indicator.dart';
 
 class TimerInfo extends StatefulWidget {
-  const TimerInfo({Key key}) : super(key: key);
+  const TimerInfo({Key? key}) : super(key: key);
 
   @override
   _TimerInfoState createState() => _TimerInfoState();
 }
 
 class _TimerInfoState extends State<TimerInfo> {
-  AudioPlayer player;
-  FlutterLocalNotificationsPlugin notifications;
+  late Notifications notifications;
 
   @override
   void initState() {
-    player = AudioPlayer();
-    notifications = FlutterLocalNotificationsPlugin();
-    initNotifications();
+    notifications = getIt.get<Notifications>();
     super.initState();
   }
 
@@ -96,37 +91,16 @@ class _TimerInfoState extends State<TimerInfo> {
   Future<void> _onComplete(TimerState state) async {
     final message =
         !state.mode.isWork ? 'Time to take a break' : "Let's get back to work!";
-    if (currentPlatformType == PlatformType.macOS) {
-      if (await WindowActivator.isMiniaturized()) {
-        await notifications.show(
-          0,
-          'Cycle completed',
-          message,
-          const NotificationDetails(
-            macOS: MacOSNotificationDetails(
-              subtitle: 'Click to go back to the app',
-            ),
-          ),
-        );
-      } else {
-        await WindowActivator.activateWindow();
-        await player.setAsset('audio/ding.mp3');
-        await player.play();
-        await player.seekToPrevious();
-      }
-    } else {
-      QuickNotify.notify(content: message);
-    }
-  }
 
-  Future<void> initNotifications() async {
-    await notifications
-        .resolvePlatformSpecificImplementation<
-            MacOSFlutterLocalNotificationsPlugin>()
-        ?.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
+    if (isWindowVisible()) {
+      activateWindow();
+      await notifications.playSound('audio/ding.mp3');
+    } else {
+      await notifications.show(
+        title: 'Cycle completed',
+        subtitle: 'Click to go back to the app',
+        message: message,
+      );
+    }
   }
 }

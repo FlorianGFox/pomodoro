@@ -6,7 +6,7 @@ import '../../logic/timer_logic/timer_cubit.dart';
 import '../dialogs/settings_dialog.dart';
 
 class TimerContextMenu extends StatelessWidget {
-  const TimerContextMenu({Key key}) : super(key: key);
+  const TimerContextMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

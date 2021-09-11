@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class TimerActionButton extends StatelessWidget {
   const TimerActionButton({
-    Key key,
-    @required this.icon,
-    @required this.onPressed,
-  })  : assert(icon != null && onPressed != null),
-        super(key: key);
+    Key? key,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
 
   final IconData icon;
   final VoidCallback onPressed;

@@ -1,6 +1,5 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
-import 'package:window_size/window_size.dart';
 
 import '../constants/size_constants.dart';
 import 'platform.dart';
@@ -8,8 +7,10 @@ import 'platform.dart';
 /// Utils for desktop windows.
 
 /// Sets up the desktop windows.
+///
+/// It does nothing if the current platform is not desktop.
 void setUpDesktopWindow() {
-  if (currentPlatformType == PlatformType.windows) {
+  if (platformIsDesktop()) {
     doWhenWindowReady(() {
       const initialSize = kWindowSize;
       appWindow.minSize = initialSize;
@@ -18,8 +19,19 @@ void setUpDesktopWindow() {
       appWindow.alignment = Alignment.center;
       appWindow.show();
     });
-  } else {
-    setWindowMinSize(kWindowSize);
-    setWindowMaxSize(kWindowSize);
+  }
+}
+
+bool isWindowVisible() {
+  if (platformIsDesktop()) {
+    return appWindow.isVisible;
+  }
+
+  return false;
+}
+
+void activateWindow() {
+  if (platformIsDesktop()) {
+    return appWindow.show();
   }
 }

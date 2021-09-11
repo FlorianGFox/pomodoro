@@ -8,7 +8,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   menubar
   quick_notify
   url_launcher_windows
-  window_size
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

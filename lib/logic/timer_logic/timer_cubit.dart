@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
 import '../../constants/pomodoro_constants.dart';
 import '../../core/pomodoro_time.dart';
@@ -19,12 +18,12 @@ class TimerCubit extends Cubit<TimerState> {
   final StorageService _storage;
   final ticker = tick.Ticker();
 
-  StreamSubscription<int> _tickerSubscription;
+  StreamSubscription<int>? _tickerSubscription;
 
   void initTimes() {
     final times = _storage.getTimes();
-    final workTime = times.workTime ?? kWorkTime;
-    final restTime = times.restTime ?? kRestTime;
+    final workTime = times.workTime;
+    final restTime = times.restTime;
     emit(
       state.copyWith(
         duration: workTime,
